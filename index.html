@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+
+<h2>What currency are you exchanging?</h2>
+
+<form>
+  <label for="dol">Dollar</label>
+  <input type="radio" id="dol"><br>
+  <label for="pes">Peso</label>
+  <input type="radio" id="pes" value="Delete"><br>
+  <label for="eur">Euro</label>
+  <input type="radio" id="eur"><br>
+</form>
+
+<h2>What currency do you want?</h2>
+
+<form>
+  <label for="dol2">Dollar</label>
+  <input type="radio" id="dol2"><br>
+  <label for="pes2">Peso</label>
+  <input type="radio" id="pes2" value="Delete"><br>
+  <label for="eur2">Euro</label>
+  <input type="radio" id="eur2"><br>
+
+</form>
+
+<h2>How much?</h2>
+      
+<input type="text" id="amount">
+
+<button type="button" onclick="showAmount()">Enter</button>
+   
+    <h3 id="finalAmount">final amount will show here</h3>
+ 
+
+<script>
+
+
+function whichOneIn(inDol, inPes, inEur) {
+	if (inDol === true) {
+		return "dollar";
+} else if (inPes === true) {
+		return "peso";
+} else if (inEur === true) {
+		return "euro";
+}
+}
+
+function whichOneOut(outDol, outPes, outEur) {
+	if (outDol === true) {
+		return "dollar";
+} else if (outPes === true) {
+		return "peso";
+} else if (outEur === true) {
+		return "euro";
+}
+}
+
+
+
+function exchange(inCurrency, outCurrency) {
+    if (inCurrency === "dollar" && outCurrency === "peso") {
+        var r = 44.63;
+        return r;
+    } else if (inCurrency === "dollar" && outCurrency === "euro") {
+        var r = 0.73;
+        return r;
+    } else if (inCurrency === "peso" && outCurrency === "dollar") {
+        var r = 0.02;
+        return r;
+    } else if (inCurrency === "peso" && outCurrency === "euro") {
+        var r = 0.02;
+        return r;
+    } else if (inCurrency === "euro" && outCurrency === "peso") {
+        var r = 60.92;
+        return r;
+    } else if (inCurrency === "euro" && outCurrency === "dollar") {
+        var r = 1.37;
+        return r;
+    }
+}
+
+
+
+function showAmount () {
+var inDol = document.getElementById("dol").checked;
+var inPes = document.getElementById("pes").checked;
+var inEur = document.getElementById("eur").checked;
+var outDol = document.getElementById("dol2").checked;
+var outPes = document.getElementById("pes2").checked;
+var outEur = document.getElementById("eur2").checked;
+var inCurrency = whichOneIn(inDol, inPes, inEur);
+var outCurrency = whichOneOut(outDol, outPes, outEur);
+var foreignExchange = exchange(inCurrency,outCurrency);
+var cashAmt = document.getElementById("amount").value;
+var calc = (cashAmt * foreignExchange);
+document.getElementById("finalAmount").innerHTML= calc;
+}
+
+</script>
+
+
+</body>
+
+
+</html>
